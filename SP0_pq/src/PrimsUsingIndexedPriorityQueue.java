@@ -13,11 +13,10 @@ import java.util.Scanner;
 public class PrimsUsingIndexedPriorityQueue {
 
 	static void minimumWeight(Graph g) {
-
-		IndexedHeap h = new IndexedHeap(g.numberOfVertices);
+		ComparatorPQ c = new ComparatorPQ();
+		IndexedHeap<Vertex> h = new IndexedHeap<Vertex>(g.numberOfVertices, c);
 		int weight = 0;
 		g.verts.get(1).weight = 0;
-
 		// make the weight of first vertex to be 0 so that it will not cause
 		// problems in the algorithm.
 
@@ -26,7 +25,7 @@ public class PrimsUsingIndexedPriorityQueue {
 			h.add(g.verts.get(i));
 
 		}
-		h.arr1[0].weight = 0;
+
 		while (h.size > 0) {
 
 			Vertex v = h.remove();
@@ -46,17 +45,22 @@ public class PrimsUsingIndexedPriorityQueue {
 			}
 
 		}
+
+		// starts from position and spans till the end
+
 		System.out.println("weight:" + weight);
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File f1 = new File("/Users/santoshkompally/Documents/workspace/SP0_pq/src/input.txt");
+		File f1 = new File("/Users/santoshkompally/git/Implementation/SP0_pq/src/input.txt");
 
 		Scanner sc = new Scanner(f1);
 
 		Graph g = Graph.readGraph(sc, false);
+		System.out.println(System.currentTimeMillis());
 		minimumWeight(g);
+		System.out.println(System.currentTimeMillis());
 
 	}
 

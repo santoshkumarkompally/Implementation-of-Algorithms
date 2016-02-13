@@ -6,7 +6,7 @@
  * @author santoshkompally
  *
  */
-public interface Index {
+public interface Index<E> {
 
 	public int getIndex();
 

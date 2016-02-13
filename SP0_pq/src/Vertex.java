@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex implements Index {
+public class Vertex implements Index<Vertex> {
 
 	int name;
 	Boolean seen;

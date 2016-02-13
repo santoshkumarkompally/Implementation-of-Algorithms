@@ -14,18 +14,20 @@ public class PrimsUsingEdges {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File f1 = new File("/Users/santoshkompally/Documents/workspace/SP0_pq/src/input.txt");
+		File f1 = new File("/Users/santoshkompally/git/Implementation/SP0_pq/src/input.txt");
 
 		Scanner sc = new Scanner(f1);
 
 		Graph g = Graph.readGraph(sc, false);
+		System.out.println(System.currentTimeMillis());
 		minimumWeight(g);
-
+		System.out.println(System.currentTimeMillis());
 	}
 
 	static int minimumWeight(Graph g) {
-
-		Heap<Edge> h = new Heap<>(g.numberOfEdges);
+		ComparatorQ q = new ComparatorQ();
+		// pass a array of edges.
+		Heap<Edge> h = new Heap<>(g.numberOfEdges, q);
 
 		// take a vertex v. lets say the first vertex.
 		int weight = 0;

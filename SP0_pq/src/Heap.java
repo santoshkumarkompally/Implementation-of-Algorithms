@@ -8,20 +8,23 @@ import java.util.Comparator;
  * @author santoshkompally
  *
  */
-public class Heap<E> implements Comparator<Edge> {
+public class Heap<E> {
 
-	Object[] arr1;
+	Object[] arr;
+	E arr1[];
 	int maxLength;
 	int size;
+	Comparator<E> c;
 
 	/**
 	 * @param length
 	 *            create a array of length+1 because first element is not used.
 	 */
-	Heap(int length) {
-
-		arr1 = new Object[length + 1];
+	Heap(int numberOfEdges, Comparator<E> com) {
+		arr = new Object[numberOfEdges + 1];
+		arr1 = (E[]) arr; // this is needed for the program to work.
 		size = 0;
+		c = com;
 	}
 
 	int size() {
@@ -37,19 +40,19 @@ public class Heap<E> implements Comparator<Edge> {
 			leftChild = position * 2;
 		if (position * 2 + 1 <= size)
 			rightChild = position * 2 + 1;
-		Object temp = (Edge) arr1[position];
-		if (compare((Edge) arr1[position], (Edge) arr1[leftChild]) > 0) {
+		E temp = arr1[position];
+		if (c.compare(arr1[position], arr1[leftChild]) > 0) {
 
 			temp = arr1[leftChild];
 		}
-		if (compare((Edge) temp, (Edge) arr1[rightChild]) > 0) {
+		if (c.compare(temp, arr1[rightChild]) > 0) {
 
 			temp = arr1[rightChild];
 		}
 
-		if (compare((Edge) temp, (Edge) arr1[position]) != 0) {
+		if (c.compare(temp, arr1[position]) != 0) {
 
-			if (compare((Edge) temp, (Edge) arr1[leftChild]) == 0) {
+			if (c.compare(temp, arr1[leftChild]) == 0) {
 
 				arr1[leftChild] = arr1[position];
 				arr1[position] = temp;
@@ -69,7 +72,7 @@ public class Heap<E> implements Comparator<Edge> {
 
 		arr1[0] = arr1[position];
 
-		while (compare((Edge) arr1[position / 2], (Edge) arr1[0]) > 0) {
+		while (c.compare(arr1[position / 2], arr1[0]) > 0) {
 
 			arr1[position] = arr1[position / 2];
 			position = position / 2;
@@ -101,17 +104,6 @@ public class Heap<E> implements Comparator<Edge> {
 		size--;
 		perculateDown(1);
 		return (E) arr1[0];
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public int compare(Edge o1, Edge o2) {
-		return o1.weight - o2.weight;
-
 	}
 
 }
