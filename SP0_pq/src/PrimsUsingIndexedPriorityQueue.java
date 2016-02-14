@@ -53,15 +53,21 @@ public class PrimsUsingIndexedPriorityQueue {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File f1 = new File("/Users/santoshkompally/git/Implementation/SP0_pq/src/input.txt");
+		Scanner sc;
+		Timer time = new Timer();
+		if (args.length > 0) {
+			File f = new File(args[0]);
+			sc = new Scanner(f);
+		} else {
 
-		Scanner sc = new Scanner(f1);
+			sc = new Scanner(System.in);
 
+		}
 		Graph g = Graph.readGraph(sc, false);
-		System.out.println(System.currentTimeMillis());
+		time.start();
 		minimumWeight(g);
-		System.out.println(System.currentTimeMillis());
-
+		time.end();
+		System.out.println(time.toString());
 	}
 
 }

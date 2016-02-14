@@ -12,18 +12,6 @@ import java.util.Scanner;
  */
 public class PrimsUsingEdges {
 
-	public static void main(String[] args) throws FileNotFoundException {
-
-		File f1 = new File("/Users/santoshkompally/git/Implementation/SP0_pq/src/input.txt");
-
-		Scanner sc = new Scanner(f1);
-
-		Graph g = Graph.readGraph(sc, false);
-		System.out.println(System.currentTimeMillis());
-		minimumWeight(g);
-		System.out.println(System.currentTimeMillis());
-	}
-
 	static int minimumWeight(Graph g) {
 		ComparatorQ q = new ComparatorQ();
 		// pass a array of edges.
@@ -66,6 +54,24 @@ public class PrimsUsingEdges {
 		}
 		System.out.println("weight is:" + weight);
 		return 0;
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+
+		Scanner sc;
+		Timer time = new Timer();
+
+		if (args.length > 0) {
+			File f = new File(args[0]);
+			sc = new Scanner(f);
+		} else {
+			sc = new Scanner(System.in);
+		}
+		Graph g = Graph.readGraph(sc, false);
+		time.start();
+		minimumWeight(g);
+		time.end();
+		System.out.println(time.toString());
 	}
 
 }
