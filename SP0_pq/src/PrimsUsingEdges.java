@@ -29,6 +29,7 @@ public class PrimsUsingEdges {
 		while (h.size() > 0) {
 
 			Edge e = h.remove();
+
 			if (e.from.seen == true && e.to.seen == true) // both are seen
 															// continue
 				continue;

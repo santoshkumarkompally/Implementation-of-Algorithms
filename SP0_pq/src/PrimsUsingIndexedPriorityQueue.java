@@ -3,10 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * 
- */
-
-/**
  * @author santosh kompally
  *
  */
@@ -36,11 +32,12 @@ public class PrimsUsingIndexedPriorityQueue {
 
 				Vertex u = e.otherEnd(v);
 
-				if (u.seen == false && u.weight > e.weight) {
+				if (!u.seen && u.weight > e.weight) {
 
 					u.weight = e.weight;
 
 				}
+
 				h.perculateUp(u.getIndex());
 			}
 

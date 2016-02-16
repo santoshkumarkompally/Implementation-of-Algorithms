@@ -20,11 +20,13 @@ public class Heap<E> {
 	 * @param length
 	 *            create a array of length+1 because first element is not used.
 	 */
+	@SuppressWarnings("unchecked")
 	Heap(int numberOfEdges, Comparator<E> com) {
 		arr = new Object[numberOfEdges + 1];
 		arr1 = (E[]) arr; // this is needed for the program to work.
 		size = 0;
 		c = com;
+
 	}
 
 	int size() {

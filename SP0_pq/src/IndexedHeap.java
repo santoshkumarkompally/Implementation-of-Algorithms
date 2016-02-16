@@ -20,6 +20,7 @@ public class IndexedHeap<E> {
 	 * @param length
 	 *            create a array of length+1 because first element is not used.
 	 */
+	@SuppressWarnings("unchecked")
 	IndexedHeap(int length, Comparator<E> c) {
 
 		arr = new Object[length + 1];
@@ -57,16 +58,16 @@ public class IndexedHeap<E> {
 
 				arr1[leftChild] = arr1[position];
 				arr1[position] = temp;
-				((Vertex) arr1[leftChild]).setIndex(position);
-				((Vertex) arr1[position]).setIndex(leftChild);
+				((Vertex) arr1[leftChild]).setIndex(leftChild);
+				((Vertex) arr1[position]).setIndex(position);
 				perculateDown(leftChild);
 
 			} else {
 
 				arr1[rightChild] = arr1[position];
 				arr1[position] = temp;
-				((Vertex) arr1[rightChild]).setIndex(position);
-				((Vertex) arr1[position]).setIndex(rightChild);
+				((Vertex) arr1[rightChild]).setIndex(rightChild);
+				((Vertex) arr1[position]).setIndex(position);
 				perculateDown(rightChild);
 			}
 
@@ -75,17 +76,16 @@ public class IndexedHeap<E> {
 
 	void perculateUp(int position) {
 
-		int temp = position;
-		arr1[0] = arr1[position];
+		arr1[0] = arr1[position]; // element is in 20 position.
 
 		while (c.compare(arr1[position / 2], arr1[0]) > 0) {
 
-			arr1[position] = arr1[position / 2];
-			((Vertex) arr1[position / 2]).setIndex(position);
+			arr1[position] = arr1[position / 2]; // change index needed.
+			((Vertex) arr1[position]).setIndex(position);
 			position = position / 2;
 		}
 		arr1[position] = arr1[0];
-		((Vertex) arr1[temp]).setIndex(position);
+		((Vertex) arr1[position]).setIndex(position);
 
 	}
 
