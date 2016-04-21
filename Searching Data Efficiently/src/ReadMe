@@ -1,0 +1,10 @@
+Input:
+
+Input can be given from command line or from file.
+If input id given through a file by giving the file name as the first argument.
+
+Output:
+
+The value returned after performing all the operations as mentioned as the input.
+
+

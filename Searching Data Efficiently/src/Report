@@ -1,0 +1,90 @@
+LP4
+
+Members : Santosh Kompally, Roshni Saraogi,Rohini 
+
+The main fie is LP4Driver.java
+
+To store the items we are using a TreeMap<id,(id,price,descriptors,size)>
+
+ operations:
+
+	N denotes the number of items.
+
+	Insertion Item:
+	 Cost: O(log(N)) 
+
+	Deletion Item:
+	 Cost: O(log(N))
+
+	Update Item:
+	 Cost: O(log(N))
+
+	Find Item:
+	 Cost : O(log(N))
+
+	Price Hike for all ids in given range:
+	Cost : O(log(N))	
+
+If a query to find range is issued on items HashMap will not be useful thats why tree map is used.
+If the value of N is very large then HashMap might perform little better than TreeMap since HashMap expected time is O(1)
+
+To store mapping between descriptors and IDs we are using HashMap<descriptor,ArrayList<id>>
+
+Since range query is not issued on descriptors we are using a HashMap.
+
+* This data sructure is updated  as the items are inserted/deleted.
+  * When a item is inserted all the descriptors are updated.
+  * When a item is removed all the entries of the item are removed from the descriptorsMap.
+
+
+ operations:
+
+	findMaxPrice(description)
+	 Cost: O(N) is the worst case where all the id's have this descriptor.
+	  
+	findMinPrice(description)
+	 Cost: O(N) is the worst case where all the id's have this descriptor.
+ 
+	findPriceRange(description,minPrice,maxPrice) for given description price is between [minPrice,maxPrice]
+	 Cost:O(N) is the worst case where all the id's have this descriptor.
+
+
+operations:
+
+	Range(lowPrice,highPrice)
+	 Cost: O(N) Iterate through the list of items and count accordingly.
+	
+		 
+	 
+
+To solve the Same Same we are using array of size 10000 since each item can have at most 10000 descriptors.
+Each position in the array consists of a array list of objects (hash,descriptors,count)
+
+In the above object hash is the hash of all the descriptors.
+count indicates the number of items that are samesame and have the same object type.
+
+* This data structure is updated at insertion/updation/deletion of item.
+	
+***********************
+samesame variable maintains the number of same same objects always.
+
+For searching if a item is samesame or not first we check the respective bucket based on the number of descriptors.
+The we parse through the list of hash values.
+If the hash match then we compare all the descriptors to avoid collision.
+If all the descriptors match then they are same same and the count is added. 
+
+For Insertion we find if the entry exists or not using the above logic.
+If it does not exist it is added to the list.
+If it exists count of samesame is incremented.
+
+For removal we find it and see the number of occurances.
+If only one occurance is there we delete it.
+If more than once occurances are found we reduce the count value and the same same value is reduced by 1.
+
+***********************
+
+
+Operations:
+
+	SameSame()
+	 Cost : O(1). since we are only returning the same same value. 
