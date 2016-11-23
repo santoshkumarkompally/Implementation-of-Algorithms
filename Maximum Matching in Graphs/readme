@@ -1,0 +1,15 @@
+The main programs are:
+LP5Lev1
+LP5lev3
+
+The level LP5Lev1 is running correctly but the LP5Lev3 is going into an infinite loop.
+
+javac LP5Lev1.java
+java LP5Lev1 filename.txt (VERBOSE)
+
+The program takes 1/2 arguments:
+1. file name
+2. VERBOSE(Any string as second command line argument will do).
+
+If no command line arguments are given input is taken from the command line.
+

@@ -1,0 +1,8 @@
+In LP5 Level1 we are finding multiple augmenting paths in one iteration.
+This speeds up the execution.
+We make sure that the alternating path is frozen when ever we find one so that there are no interleaving augmented paths.
+The program terminates when we are not able to find any alternating path in the graph.
+
+
+In LP5 level 3 we tried to find the maximum weighted matching but the code is running in a infinite loop.
+Due to the deadline we are submitting the Level3 as it is.
